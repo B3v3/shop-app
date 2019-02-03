@@ -2,3 +2,8 @@
 <p> Price: <%= @product.price %> </p>
 
 <p> <%= @product.description %> </p>
+
+<%= form_for current_order.ordered_products.build do |f| %>
+  <%= hidden_field_tag :product_id, @product.id %>
+  <%= f.submit %>
+<% end %>

@@ -2,6 +2,8 @@ class Product < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  has_many :ordered_products
+
   validates :name, presence: true, uniqueness: { case_sensitive: false},
                    length: { minimum: 3,maximum: 64 }
 
