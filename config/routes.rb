@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'products#index'
   resources :products
 
-  resources :ordered_products, only: [:create]
+  resources :ordered_products, only: [:create, :destroy]
 
   get 'cart', to: 'orders#cart'
   delete 'cart', to: 'orders#clear_cart'

@@ -1,5 +1,8 @@
 <% @ordered_products.each do |ordered_product| %>
   <%= link_to ordered_product.product.name, ordered_product.product %>
+  
+  <%= link_to 'Delete from Cart', ordered_product_path(ordered_product),
+              data: {:confirm => 'Are you sure?'}, :method => :delete %>
 <% end %>
 
 <%= link_to 'Clear Cart', cart_path,
