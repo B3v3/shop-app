@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   let(:order) { build(:order) }
-  
+
   describe 'validations' do
     it "should accept a valid order" do
       expect(order).to be_valid
@@ -57,6 +57,18 @@ RSpec.describe Order, type: :model do
 
     it 'should set price if non' do
       expect(Order.new.total_price).to eql(0)
+    end
+  end
+
+  describe 'update_price' do
+    it "update price when given a number price" do
+      order.save
+      expect { order.update_price(50)}.to change(order, :total_price).by(50)
+    end
+
+    it "does nothing when given price isnt number" do
+      order.save
+      expect { order.update_price("a")}.not_to change(order, :total_price)
     end
   end
 end

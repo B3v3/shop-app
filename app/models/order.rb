@@ -13,4 +13,8 @@ class Order < ApplicationRecord
   validates :status, inclusion: { in: ["In progress", 'Done'] }
   validates :total_price, numericality: { only_integer: true,
                                           greater_than_or_equal_to: 0 }
+
+  def update_price(price)
+    self.update_columns(total_price:(self.total_price + price.to_i))
+  end
 end
