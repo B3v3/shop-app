@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   end
 
   def clear_cart
-    helpers.current_order.ordered_products.delete_all
+    helpers.current_order.ordered_products.destroy_all
     redirect_to cart_path
   end
 
