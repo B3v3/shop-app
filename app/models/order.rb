@@ -17,4 +17,9 @@ class Order < ApplicationRecord
   def update_price(price)
     self.update_columns(total_price:(self.total_price + price.to_i))
   end
+
+  #since is fake its only change status
+  def buy
+    self.update_columns(status:'Done')
+  end
 end

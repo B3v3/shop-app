@@ -71,4 +71,11 @@ RSpec.describe Order, type: :model do
       expect { order.update_price("a")}.not_to change(order, :total_price)
     end
   end
+
+  describe 'buy' do
+    it "should change status to Done" do
+      order.save
+      expect { order.buy }.to change(order, :status).to("Done")
+    end
+  end
 end

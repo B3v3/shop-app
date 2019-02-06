@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   get 'cart', to: 'orders#cart'
   delete 'cart', to: 'orders#clear_cart'
+  put 'cart', to: 'orders#buy'
 
 end

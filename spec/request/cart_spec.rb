@@ -52,4 +52,21 @@ RSpec.describe 'Products', :type => :request do
       expect(response).to redirect_to(cart_path)
     end
   end
+
+  describe 'buying' do
+    before(:each) do
+      get '/cart'
+    end
+
+    it "should change status of current order" do
+      expect(Order.first.status).to eql("In progress")
+      put '/cart'
+      Order.first.reload
+      expect(Order.first.status).to eql("Done")
+    end
+
+    it "should start a new order" do
+      expect{ put '/cart'}.to change(Order, :count).by(1)
+    end
+  end
 end

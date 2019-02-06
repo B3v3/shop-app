@@ -9,3 +9,7 @@
 <p> Total price: <%= current_order.total_price %> </p>
 <%= link_to 'Clear Cart', cart_path,
             data: {:confirm => 'Are you sure?'}, :method => :delete %>
+
+<%= form_for current_order, url: cart_path do |f| %>
+  <%= f.submit 'Buy' %>
+<% end %>
