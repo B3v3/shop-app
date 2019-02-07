@@ -1,9 +1,7 @@
 <%= link_to "Fake Shop", root_path %>
 
 <% if user_signed_in? %>
-  <%= link_to "Cart(#{current_order.ordered_products.count})", cart_path %>
-  <%= link_to "Log out", destroy_user_session_path,
-      data: {:confirm => 'Are you sure?'}, :method => :delete %>
+  <%= render 'layouts/signed_in_links' %>
 <% else %>
   <%= link_to "Log in", new_user_session_path %>
 <% end %>
