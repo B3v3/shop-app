@@ -1,9 +1,17 @@
-<%= render 'orders/products_in_cart' %>
+<div class="container">
+  <%= render 'orders/products_in_cart' %>
 
-<p> Total price: <%= current_order.total_price %> </p>
-<%= link_to 'Clear Cart', cart_path,
-            data: {:confirm => 'Are you sure?'}, :method => :delete %>
+  <div class="jumbotron">
+    <p class="text-center">
+       Total price: <%= current_order.total_price %>
+    </p>
 
-<%= form_for current_order, url: cart_path do |f| %>
-  <%= f.submit 'Buy' %>
-<% end %>
+    <%= link_to 'Clear Cart', cart_path,
+                data: {:confirm => 'Are you sure?'}, :method => :delete,
+                class: 'btn btn-danger btn-lg btn-block' %>
+
+    <%= form_for current_order, url: cart_path do |f| %>
+      <%= f.submit 'Buy', class: 'btn btn-success btn-lg btn-block' %>
+    <% end %>
+  </div>
+</div>

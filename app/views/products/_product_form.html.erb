@@ -1,12 +1,30 @@
-<%= form_for @product do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %> </br>
+<div class="container">
+  <div class="jumbotron">
+  <%= form_for @product do |f| %>
+    <% if @product.errors.any? %>
+       <% @product.errors.full_messages.each do |message| %>
+         <div class="alert alert-danger" role="alert">
+           <%= message %>
+         </div>
+       <% end %>
+    <% end %>
 
-  <%= f.label :description %>
-  <%= f.text_area :description %> </br>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
 
-  <%= f.label :price %>
-  <%= f.number_field :price %> </br>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
 
-  <%= f.submit %>
-<% end %>
+    <div class="form-group">
+      <%= f.label :price %>
+      <%= f.number_field :price, class: 'form-control' %>
+    </div>
+
+    <%= f.submit "Submit", class: 'btn btn-success btn-lg btn-block' %>
+  <% end %>
+  </div>
+</div>

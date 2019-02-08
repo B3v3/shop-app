@@ -1,7 +1,14 @@
-<%= link_to "Fake Shop", root_path %>
-
-<% if user_signed_in? %>
-  <%= render 'layouts/signed_in_links' %>
-<% else %>
-  <%= link_to "Log in", new_user_session_path %>
-<% end %>
+<nav class="navbar navbar-expand-lg navbar-light navbar-inverse">
+  <div class="container">
+    <span class="navbar-text">
+      <%= link_to "Fake Shop", root_path, class: 'h2 text-dark' %>
+    </span>
+    <div class="navbar-brand navbar-right">
+      <% if user_signed_in? %>
+        <%= render 'layouts/signed_in_links' %>
+      <% else %>
+        <%= link_to "Log in", new_user_session_path, class: 'h3 text-dark' %>
+      <% end %>
+    </div>
+ </div>
+</nav>

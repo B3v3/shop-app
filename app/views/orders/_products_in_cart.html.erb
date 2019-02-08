@@ -1,7 +1,14 @@
 <% @ordered_products.each do |ordered_product| %>
-  <%= link_to ordered_product.product.name, ordered_product.product %>
+  <div class="jumbotron">
+    <nav class="navbar">
+      <%= link_to ordered_product.product.name, ordered_product.product,
+          class: 'h3 text-dark text-center navbar-text'%>
 
-  <%= link_to 'Delete from Cart', ordered_product_path(ordered_product),
-              data: {:confirm => 'Are you sure?'}, :method => :delete %>
-  Price: <%= ordered_product.product.price %>
+      <p class="navbar-text">Price: <%= ordered_product.product.price %></p>
+    </nav>
+
+    <%= link_to 'Delete from Cart', ordered_product_path(ordered_product),
+                data: {:confirm => 'Are you sure?'}, :method => :delete,
+                class: 'btn btn-danger btn-block' %>
+  </div>
 <% end %>

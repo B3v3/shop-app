@@ -1,2 +1,7 @@
-<%= render @product %>
-<%= render 'products/add_to_cart' %>
+<div class="jumbotron">
+  <%= render @product %>
+
+  <% if user_signed_in? %>
+    <%= render 'products/add_to_cart' %>
+  <% end %>
+</div>
