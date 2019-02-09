@@ -1,10 +1,9 @@
 <% @ordered_products.each do |ordered_product| %>
-  <div class="jumbotron">
-    <nav class="navbar">
+  <div class="jumbotron text-center">
       <%= link_to ordered_product.product.name, ordered_product.product,
-          class: 'h3 text-dark text-center navbar-text'%>
+          class: 'h2 text-dark '%>
 
-      <p class="navbar-text">Price: <%= ordered_product.product.price %></p>
+      <p>Price: <%= ordered_product.product.price %></p>
     </nav>
 
     <%= link_to 'Delete from Cart', ordered_product_path(ordered_product),

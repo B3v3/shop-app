@@ -1,5 +1,6 @@
 class OrderedProductsController < ApplicationController
   include ApplicationHelper
+  before_action :authenticate_user!
 
   def create
     ordered_product = current_order.ordered_products.build(ordered_products_params)

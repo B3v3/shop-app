@@ -2,6 +2,8 @@ class Order < ApplicationRecord
   has_many :ordered_products
   has_many :products, :through => :ordered_products
 
+  belongs_to :user
+  
   after_initialize do
     self.status = 'In progress' if self.status.nil?
   end

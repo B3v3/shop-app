@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Order, type: :model do
   let(:order) { build(:order) }
 
+  before(:each) do
+    create(:user)
+  end
+
   describe 'validations' do
     it "should accept a valid order" do
       expect(order).to be_valid

@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   include ApplicationHelper
+  before_action :authenticate_user!
 
   def cart
     @ordered_products = current_order.ordered_products
