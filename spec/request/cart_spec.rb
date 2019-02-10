@@ -70,6 +70,16 @@ RSpec.describe 'Cart', :type => :request do
         expect { get '/cart' }.to change(Order, :count).by (1)
         expect(Order.last.user).to eq(user1)
       end
+
+      it "should create a new cart when order is done" do
+        create(:order, status: "Done")
+        expect { get '/cart' }.to change(Order, :count).by (1)
+      end
+
+      it "should not create a new cart when order is not done" do
+        create(:order)
+        expect { get '/cart' }.not_to change(Order, :count)
+      end
     end
 
     describe 'adding products to cart' do
