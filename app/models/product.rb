@@ -2,7 +2,10 @@ class Product < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  has_many :ordered_products
+  after_update :update_orders_price
+
+  has_many :ordered_products, dependent: :destroy
+  has_many :orders, through: :ordered_products
 
   validates :name, presence: true, uniqueness: { case_sensitive: false},
                    length: { minimum: 3,maximum: 64 }
@@ -12,4 +15,9 @@ class Product < ApplicationRecord
 
   validates :description, presence: true, length: { minimum: 2, maximum: 1000 }
 
+  def update_orders_price
+    self.orders.each do |order|
+      order.set_price
+    end
+  end
 end

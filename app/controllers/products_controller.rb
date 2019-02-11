@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :find_product,    except: [:index, :new, :create]
-  before_action :authenticate_user!, except:   [:index, :show]
+  before_action :find_product,            except:   [:index, :new, :create]
+  before_action :authenticate_user!,      except:   [:index, :show]
+  before_action :check_if_user_is_admin,  except:   [:index, :show]
 
   def index
     @products = Product.all
@@ -39,6 +40,10 @@ class ProductsController < ApplicationController
   private
   def find_product
     @product = Product.friendly.find(params[:id])
+  end
+
+  def check_if_user_is_admin
+    redirect_to root_path unless current_user.is_admin?
   end
 
   def product_params

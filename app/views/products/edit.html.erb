@@ -1,1 +1,7 @@
 <%= render 'products/product_form' %>
+
+<div class="container">
+<%= link_to 'Delete', product_path(@product),
+            data: {:confirm => 'Are you sure?'}, :method => :delete,
+            class: 'btn btn-lg btn-danger btn-block' %>
+</div>

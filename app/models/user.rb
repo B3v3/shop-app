@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :orders
-  has_one :admin
+  has_many :orders, dependent: :destroy
+  has_one :admin, dependent: :destroy
 
   def is_admin?
     !self.admin.nil?
