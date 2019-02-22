@@ -1,0 +1,9 @@
+<% @products.each do |product| %>
+  <div class="jumbotron text-center">
+    <%= link_to product.name, product, class: 'h2 text-dark' %>
+
+    <p>
+      Price: <%= product.price %>
+    </p>
+  </div>
+<% end %>

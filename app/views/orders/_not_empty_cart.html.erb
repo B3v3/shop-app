@@ -1,0 +1,13 @@
+<%= render 'orders/products_in_cart' %>
+
+<div class="jumbotron">
+  <p class="text-center">
+     Total price: <%= current_order.total_price %>
+  </p>
+
+  <%= link_to 'Clear Cart', cart_path,
+              data: {:confirm => 'Are you sure?'}, :method => :delete,
+              class: 'btn btn-danger btn-lg btn-block' %>
+
+  <%= render 'buy_button' %>
+</div>

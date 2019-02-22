@@ -3,12 +3,12 @@
       class: 'btn btn-info btn-lg btn-block'%>
 <% end %>
 
-<% @products.each do |product| %>
+<% if @products.any? %>
+    <%= render "products" %>
+<% else %>
   <div class="jumbotron text-center">
-    <%= link_to product.name, product, class: 'h2 text-dark' %>
-
     <p>
-      Price: <%= product.price %>
+      Nothing at all ):
     </p>
   </div>
 <% end %>

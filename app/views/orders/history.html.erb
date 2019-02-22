@@ -1,0 +1,8 @@
+<div class="container">
+
+<% if @orders.any? %>
+  <%= render 'order_history' %>
+</div>
+<% else %>
+ <h2> None orders ):</h2>
+<% end %>

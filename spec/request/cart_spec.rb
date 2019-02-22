@@ -22,7 +22,7 @@ RSpec.describe 'Cart', :type => :request do
 
     describe 'buying' do
       it "should redirect to login page" do
-        get '/cart'
+        put '/cart'
         expect(response).to redirect_to(new_user_session_path)
       end
 
@@ -33,7 +33,7 @@ RSpec.describe 'Cart', :type => :request do
 
     describe 'clearning cart' do
       it "should redirect to login page" do
-        get '/cart'
+        delete '/cart'
         expect(response).to redirect_to(new_user_session_path)
       end
     end
@@ -41,7 +41,7 @@ RSpec.describe 'Cart', :type => :request do
 
     describe 'adding to cart' do
       it "should redirect to login page" do
-        get '/cart'
+        post '/ordered_products', params: { product_id: 1 }
         expect(response).to redirect_to(new_user_session_path)
       end
 
@@ -144,15 +144,34 @@ RSpec.describe 'Cart', :type => :request do
         get '/cart'
       end
 
-      it "should change status of current order" do
-        expect(Order.first.status).to eql("In progress")
-        put '/cart'
-        Order.first.reload
-        expect(Order.first.status).to eql("Done")
+      describe 'not-empty cart' do
+        before(:each) do
+          create(:ordered_product)
+        end
+
+        it "should change status of current order" do
+          expect(Order.first.status).to eql("In progress")
+          put '/cart'
+          Order.first.reload
+          expect(Order.first.status).to eql("Done")
+        end
+
+        it "should start a new order" do
+          expect{ put '/cart'}.to change(Order, :count).by(1)
+        end
       end
 
-      it "should start a new order" do
-        expect{ put '/cart'}.to change(Order, :count).by(1)
+      describe 'empty cart' do
+        it 'should not change status of current order' do
+          expect(Order.first.status).to eql("In progress")
+          put '/cart'
+          Order.first.reload
+          expect(Order.first.status).to eql("In progress")
+        end
+
+        it "should start a new order" do
+          expect{ put '/cart'}.not_to change(Order, :count)
+        end
       end
     end
   end

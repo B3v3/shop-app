@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   delete 'cart', to: 'orders#clear_cart'
   put 'cart', to: 'orders#buy'
   patch 'cart', to: 'orders#buy'
+
+  get 'history', to: 'orders#history'
+
 end

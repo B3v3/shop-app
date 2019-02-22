@@ -1,0 +1,14 @@
+<% @orders.each do |order| %>
+  <div class="jumbotron">
+
+    <h2 class='text-center'> Done at <%= order.updated_at %></h2>
+    <ol class="list-group">
+      <% order.products.each do |product| %>
+        <li class="list-group-item list-group-item-action">
+           <%= link_to product.name, product, class: 'h3 text-dark' %>
+        </li>
+       <% end %>
+    </ol>
+    <p class='text-center'> Price - <%= order.total_price %></p>
+  </div>
+<% end %>

@@ -16,7 +16,7 @@ class Product < ApplicationRecord
   validates :description, presence: true, length: { minimum: 2, maximum: 1000 }
 
   def update_orders_price
-    self.orders.each do |order|
+    self.orders.where(status: 'In progress').each do |order|
       order.set_price
     end
   end
