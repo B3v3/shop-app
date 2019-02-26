@@ -16,7 +16,10 @@ module ApplicationHelper
 
   #to check if current order belongs to current user
   def check_order
-     current_user == Order.find(session[:order_id]).user
+    current_user == Order.find(session[:order_id]).user
+    #when order_id in cookies isnt present in database
+    rescue
+     return false
   end
 
   def check_if_user_have_order
