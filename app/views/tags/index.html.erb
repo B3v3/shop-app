@@ -1,0 +1,12 @@
+<%= render 'tags/tag_form' %>
+
+<% @tags.each do |tag| %>
+  <div class="container">
+    <div class="jumbotron text-center">
+        <%= link_to tag.name, tag, class: 'h2' %>
+        <p>
+          Products: <%= tag.products.count %>
+        </p>
+    </div>
+  </div>
+  <% end %>

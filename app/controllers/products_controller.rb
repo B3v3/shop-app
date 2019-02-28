@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    @tags = Tag.all
   end
 
   def show;end
@@ -42,11 +43,7 @@ class ProductsController < ApplicationController
     @product = Product.friendly.find(params[:id])
   end
 
-  def check_if_user_is_admin
-    redirect_to root_path unless current_user.is_admin?
-  end
-
   def product_params
-    params.require(:product).permit(:name, :price, :description)
+    params.require(:product).permit(:name, :price, :description, :tag_id)
   end
 end

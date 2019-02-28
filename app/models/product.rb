@@ -25,7 +25,7 @@ class Product < ApplicationRecord
   end
 
   def check_if_tag_is_present
-    if self.tag_id == nil
+    if self.tag_id.nil?
       if Tag.where(name: 'Other').exists?
         self.tag_id = Tag.find_by(name: 'Other').id
       else

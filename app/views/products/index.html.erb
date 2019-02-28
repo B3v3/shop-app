@@ -1,3 +1,16 @@
+<div class="container">
+  <div class="jumbotron text-center">
+    <% @tags.each_slice(3) do |three_tags| %>
+        <ul class="list-inline">
+        <% three_tags.each do |tag| %>
+          <li class="list-inline-item">
+            <%= link_to "#{tag.name}\t", tag, class: 'h3 text-dark' %>
+          </li>
+        <% end %>
+        </ul>
+    <% end %>
+  </div>
+</div>
 
 <%= link_to "Create a new product", new_product_path,
              class: 'btn btn-info btn-lg btn-block' if
@@ -6,9 +19,5 @@
 <% if @products.any? %>
     <%= render "products" %>
 <% else %>
-  <div class="jumbotron text-center">
-    <p>
-      Nothing at all ):
-    </p>
-  </div>
+  <%= render 'none_products' %>
 <% end %>

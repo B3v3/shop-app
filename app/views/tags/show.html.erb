@@ -1,0 +1,13 @@
+<% if current_user && current_user.is_admin? %>
+  <%= link_to 'All tags', tags_path,
+               class: 'btn btn-info btn-lg btn-block' %>
+
+  <%= link_to "Create a new product", new_product_path,
+               class: 'btn btn-info btn-lg btn-block' %>
+<% end %>
+
+<% if @products.any? %>
+  <%= render 'products/products' %>
+<% else %>
+  <%= render 'products/none_products' %>
+<% end %>

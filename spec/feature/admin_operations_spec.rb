@@ -87,4 +87,30 @@ describe "admin operations spec", type: :feature do
       end
     end
   end
+
+  describe 'creating new tag' do
+    scenario 'sucessfully creating new tag' do
+      visit '/tags'
+      within("#new_tag") do
+        fill_in "tag_name", with: 'test'
+      end
+      click_button 'Submit'
+
+      expect(page).to have_current_path(tag_path(Tag.last))
+
+      visit '/tags'
+      expect(page).to have_content('test')
+    end
+
+    scenario 'not sucessfully creating new tag' do
+      visit '/tags'
+      within("#new_tag") do
+        fill_in "tag_name", with: ''
+      end
+      click_button 'Submit'
+
+      expect(page).to have_current_path(tags_path)
+      expect(page).not_to have_content('test')
+    end
+  end
 end

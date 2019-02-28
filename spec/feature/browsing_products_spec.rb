@@ -21,6 +21,22 @@ let(:product1) {create(:product1)}
         visit "/"
         expect(page).to have_content "Nothing at all ):"
       end
+
+      describe 'browsing by tag' do
+        it "should show only products with specific tag" do
+          product
+          tag = create(:tag)
+          product1 = create(:product1, tag_id: tag.id)
+
+          visit "/tags/#{tag.slug}"
+
+          expect(page).to have_content "#{product1.price}"
+          expect(page).to have_link("#{product1.name}", href: "/products/#{product1.slug}")
+
+          expect(page).not_to have_content "#{product.price}"
+          expect(page).not_to have_link("#{product.name}", href: "/products/#{product.slug}")
+        end
+      end
     end
 
     describe 'product page' do

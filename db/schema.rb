@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_23_005032) do
+ActiveRecord::Schema.define(version: 2019_02_27_103201) do
 
   create_table "admins", force: :cascade do |t|
     t.integer "user_id"
@@ -61,7 +61,9 @@ ActiveRecord::Schema.define(version: 2019_02_23_005032) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["name"], name: "index_tags_on_name", unique: true
+    t.index ["slug"], name: "index_tags_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|
