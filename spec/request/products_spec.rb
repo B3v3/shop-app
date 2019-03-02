@@ -78,7 +78,7 @@ RSpec.describe 'Products', :type => :request do
         describe 'index' do
           it 'should get all products' do
             product.save
-            products = [product, saved_product]
+            products = [saved_product, product]
             get '/products'
             expect(assigns(:products)).to eq(products)
           end

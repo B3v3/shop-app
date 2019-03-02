@@ -68,7 +68,7 @@ RSpec.describe 'Cart', :type => :request do
 
         sign_in(user1)
         expect { get '/cart' }.to change(Order, :count).by (1)
-        expect(Order.last.user).to eq(user1)
+        expect(Order.first.user).to eq(user1)
       end
 
       it "should create a new cart when order is done" do
@@ -150,10 +150,10 @@ RSpec.describe 'Cart', :type => :request do
         end
 
         it "should change status of current order" do
-          expect(Order.first.status).to eql("In progress")
+          expect(Order.last.status).to eql("In progress")
           put '/cart'
-          Order.first.reload
-          expect(Order.first.status).to eql("Done")
+          Order.last.reload
+          expect(Order.last.status).to eql("Done")
         end
 
         it "should start a new order" do

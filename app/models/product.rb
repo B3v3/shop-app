@@ -2,6 +2,8 @@ class Product < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  default_scope { order(created_at: :desc) }
+
   after_update :update_orders_price
   before_validation :check_if_tag_is_present
 

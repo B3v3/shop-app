@@ -101,7 +101,7 @@ describe "cart spec", type: :feature do
       click_button('Buy')
 
       visit '/history'
-      expect(page).to have_content(Order.first.updated_at)
+      expect(page).to have_content(Order.last.updated_at)
     end
 
     it "should redirect to main page" do

@@ -4,6 +4,8 @@ class Order < ApplicationRecord
 
   belongs_to :user
 
+  default_scope { order(updated_at: :desc) }
+
   after_initialize do
     self.status = 'In progress' if self.status.nil?
   end
